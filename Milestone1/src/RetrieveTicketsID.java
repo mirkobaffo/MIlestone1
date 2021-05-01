@@ -37,7 +37,7 @@ public class RetrieveTicketsID {
          is.close();
        }
    }
-
+   
    public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
       InputStream is = new URL(url).openStream();
       try {
@@ -58,7 +58,7 @@ public class RetrieveTicketsID {
 	   return date;
    }
 
-
+   //main
   public static void main(String[] args) throws IOException, JSONException, ParseException {
 		   
 		   String projName ="RAMPART";
