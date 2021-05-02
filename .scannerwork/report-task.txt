@@ -1,0 +1,7 @@
+organization=mirkobaffo
+projectKey=mirkobaffo_Milestone1
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.19772
+dashboardUrl=https://sonarcloud.io/dashboard?id=mirkobaffo_Milestone1
+ceTaskId=AXkqIslUMNc1lo6ZiBWk
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXkqIslUMNc1lo6ZiBWk
