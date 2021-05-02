@@ -34,7 +34,12 @@ public class RetrieveTicketsID {
          String jsonText = readAll(rd);
          JSONArray json = new JSONArray(jsonText);
          return json;
-       } finally {
+       } 
+      catch(NumberFormatException e) {
+    	  System.out.println("Error: " + e);
+    	  return null;
+      }
+      finally {
          is.close();
        }
    }
