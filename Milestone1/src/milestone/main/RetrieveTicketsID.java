@@ -28,7 +28,6 @@ public class RetrieveTicketsID {
 	static Integer index;
 	private static final Logger LOGGER = Logger.getLogger(RetrieveTicketsID.class.getName());
 
-
 	private static String readAll(Reader rd) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		int cp;
@@ -74,8 +73,8 @@ public class RetrieveTicketsID {
 		max = json.getInt("total");
 		for (; i < max && i < j; i++) {
 			JSONObject field = issues.getJSONObject(i % 1000);
-			String fieldobject = field.getJSONObject("fields").get("resolutiondate").toString();
-			ticketarray.add(parseStringToDate(fieldobject));
+			String fieldObject = field.getJSONObject("fields").get("resolutiondate").toString();
+			ticketarray.add(parseStringToDate(fieldObject));
 		}
 		index = i;
 		return ticketarray;
@@ -92,13 +91,11 @@ public class RetrieveTicketsID {
 		timearray.add(((timearray.get(1) + 1) - timearray.get(0)) * 12);
 		return timearray;
 	}
-	
-
 
 	public static List<Integer> setArray(int arraysize, Calendar cal, List<Date> ticketarray, List<Integer> timearray,
 			List<Integer> arrayparziale) {
 		int k = 0;
-		for (int i = 0; i < arraysize; i=i+k+1) {
+		for (int i = 0; i < arraysize; i = i + k + 1) {
 			int ticketcounter = 1;
 			k = 0;
 			cal.setTime(ticketarray.get(i));
@@ -111,8 +108,8 @@ public class RetrieveTicketsID {
 				if (month == secondmonth && year == secondyear) {
 					ticketcounter = ticketcounter + 1;
 					k = k + 1;
-				} 
-				
+				}
+
 				else
 					break;
 			}
@@ -161,7 +158,7 @@ public class RetrieveTicketsID {
 	public static void main(String[] args) throws IOException, JSONException, ParseException {
 		Integer j = 0;
 		Integer i = 0;
-		String projName = "RAMPART";
+		String projName = "LEGAL";
 
 		// Get JSON API for closed bugs w/ AV in the project
 		do {
@@ -178,6 +175,7 @@ public class RetrieveTicketsID {
 			List<Integer> arrayparziale = new ArrayList<>();
 			Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"));
 			List<Integer> timearray = getTimeArray(cal, ticketarray, arraysize);
+			//fill dell'array per evitare valori null
 			for (int ii = 0; ii < timearray.get(2); ii++) {
 				arrayparziale.add(0);
 			}
@@ -186,10 +184,7 @@ public class RetrieveTicketsID {
 			for (int e : arrayfinale) {
 				somma = somma + e;
 			}
-			for (Date elem : ticketarray) {
-				LOGGER.log(Level.INFO, String.valueOf(elem));
-			}
-			csvWriter(arrayfinale,timearray.get(0));
+			csvWriter(arrayfinale, timearray.get(0));
 			LOGGER.log(Level.INFO, "CSV written");
 
 		} while (i < max);
